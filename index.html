@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="MotionEditor: Editing Video Motion via Content-Aware Diffusion.">
+    <meta name="keywords" content="Diffusion Model">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MotionEditor: Editing Video Motion via Content-Aware Diffusion</title>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.svg">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">MotionEditor: Editing Video Motion via Content-Aware Diffusion</h1>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                              Shuyuan Tu<sup>1,2</sup>,</span>
+                            <span class="author-block">
+                              Qi Dai<sup>3</sup>,</span>
+                            <span class="author-block">
+                              Zhi-Qi Cheng<sup>4</sup>,
+                            </span>
+                            <span class="author-block">
+                              Han Hu<sup>3</sup>,
+                            </span>
+                            <span class="author-block">
+                              Xintong Han<sup>5</sup>,
+                            </span>
+                            <span class="author-block">
+                              Zuxuan Wu<sup>1,2</sup>,
+                            </span>
+                            <span class="author-block">
+                              Yu-Gang Jiang<sup>1,2</sup>
+                            </span>
+                        </div>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>Shanghai Key Lab of Intell. Info. Processing, School of CS, Fudan University,</span>
+                            <span class="author-block"><sup>2</sup>Shanghai Collaborative Innovation Center of Intelligent Visual Computing,</span>
+                            <span class="author-block"><sup>3</sup>Microsoft Research Asia,</span>
+                            <span class="author-block"><sup>4</sup>Carnegie Mellon University,</span>
+                            <span class="author-block"><sup>5</sup>Huya Inc</span>
+                        </div>
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                              <!-- PDF Link. -->
+                              <span class="link-block">
+                                <a href="https://arxiv.org/pdf/2311.18830"
+                                   class="external-link button is-normal is-rounded is-dark">
+                                  <span class="icon">
+                                      <i class="fas fa-file-pdf"></i>
+                                  </span>
+                                  <span>Paper</span>
+                                </a>
+                              </span>
+                              <span class="link-block">
+                                <a href="https://arxiv.org/abs/2311.18830"
+                                   class="external-link button is-normal is-rounded is-dark">
+                                  <span class="icon">
+                                      <i class="ai ai-arxiv"></i>
+                                  </span>
+                                  <span>arXiv</span>
+                                </a>
+                              </span>
+                              <!-- Code Link. -->
+                              <span class="link-block">
+                                <a href="https://github.com/Francis-Rings/MotionEditor"
+                                   class="external-link button is-normal is-rounded is-dark">
+                                  <span class="icon">
+                                      <i class="fab fa-github"></i>
+                                  </span>
+                                  <span>Code</span>
+                                  </a>
+                              </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="section" id="results">
+        <center>
+            <h2 class="title is-3">Video Motion Editing Results</h2>
+        </center>
+        <center>
+            <table align="center">
+                <div class="large-4 columns">
+                </div>
+                <br>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_2/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_3/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_4/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_5/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_6/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_7/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_8/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_9/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_10/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_11/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_12/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_13/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_14/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_15/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_16/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_17/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_18/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_19/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_20/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_21/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024"
+                            src="assets/visual/video_22/result.gif">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="1024"
+                            height="1024" src="assets/visual/video_1/result.gif"></td>
+                </tr>
+            </table>
+        </center>
+    </section>
+
+    <section class="section" id="summary">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-five-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Existing diffusion-based video editing models have made gorgeous advances for editing attributes of a source video over time but struggle to manipulate the motion information while preserving the original protagonist's appearance and background.
+To address this, we propose MotionEditor, the first diffusion model for video motion editing.
+MotionEditor incorporates a novel content-aware motion adapter into ControlNet to capture temporal motion correspondence.
+While ControlNet enables direct generation based on skeleton poses, it encounters challenges when modifying the source motion in the inverted noise due to contradictory signals between the noise (source) and the condition (reference).
+Our adapter complements ControlNet by involving source content to transfer adapted control signals seamlessly.
+Further, we build up a two-branch architecture (a reconstruction branch and an editing branch) with a high-fidelity attention injection mechanism facilitating branch interaction.
+This mechanism enables the editing branch to query the key and value from the reconstruction branch in a decoupled manner, making the editing branch retain the original background and protagonist appearance.
+We also propose a skeleton alignment algorithm to address the discrepancies in pose size and position.
+Experiments demonstrate the promising motion editing ability of MotionEditor, both qualitatively and quantitatively.
+To the best of our knowledge, MotionEditor is the first diffusion-based model capable of video motion editing.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <section class="section" id="t2v_comp">
+        <center>
+            <h2 class="title is-3">Video Motion Editing Comparison (1/2)</h2>
+        </center>
+        <center>
+            <table align="center">
+                <div class="large-4 columns">
+                </div>
+                <br>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px"> Liquid Warping GAN</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/source_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/target_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/GAN-1_result.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px"> Motion Representations Articulated Animation</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/source_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/target_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/GAN-2_result.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px">Tune-A-Video</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/source_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/target_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/Tune-A-Video_result.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px"> Follow-Your-Pose</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/source_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/target_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/Follow-Your-pose_result.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px"> ControlVideo</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/source_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/target_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/ControlVideo_result.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px">Masactrl</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/source_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/target_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/Masactrl_result.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px">FateZero</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/source_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/target_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/FateZero_result.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px">MotionEditor (Ours)</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/source_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/target_result.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison/edited_result.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:13px; padding-bottom:20px"></td>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:13px; padding-bottom:20px">Source Video</td>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:13px; padding-bottom:20px">Reference Video</td>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:13px; padding-bottom:20px">Edited Video</td>
+                </tr>
+            </table>
+        </center>
+
+
+        <center>
+            <h2 class="title is-3">Video Motion Editing Comparison (2/2)</h2>
+        </center>
+        <center>
+            <table align="center">
+                <div class="large-4 columns">
+                </div>
+                <br>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px"> Liquid Warping GAN</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/source.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/target.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/GAN-1.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px"> Motion Representations Articulated Animation</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/source.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/target.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/GAN-2.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px">Tune-A-Video</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/source.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/target.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/Tune-A-Video.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px"> Follow-Your-Pose</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/source.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/target.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/Follow-Your-Pose.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px"> ControlVideo</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/source.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/target.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/ControlVideo.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px">Masactrl</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/source.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/target.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/MasaCtrl.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px">FateZero</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/source.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/target.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/FateZero.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:20px; padding-top:110px">MotionEditor (Ours)</td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/source.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/target.gif"></td>
+                    <td align="left" style="padding-left: 0px;"><img class="center" width="256" height="256"
+                            src="assets/visual/comparison_2/edited.gif"></td>
+                </tr>
+                <tr>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:13px; padding-bottom:20px"></td>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:13px; padding-bottom:20px">Source Video</td>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:13px; padding-bottom:20px">Reference Video</td>
+                    <td width="256" valign="middle" halign="middle" align="center"
+                        style="font-size:13px; padding-bottom:20px">Edited Video</td>
+                </tr>
+            </table>
+        </center>
+    </section>
+
+
+
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+                        <hr>
+                        <p>
+                            Tempolate from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, thanks!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+</body>
