@@ -1,6 +1,6 @@
-# MotionEditor
+# PoseAnimate
 
-This is the repository for the [MotionEditor website](https://francis-rings.github.io/MotionEditor/).
+This is the repository for the [PoseAnimate website](https://poseanimate.github.io/).
 
 
 # Website License
