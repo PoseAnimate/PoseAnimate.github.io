@@ -209,13 +209,15 @@
     <h2 class="title is-3">Method</h2>
         <div class="hero-body">
           <img id="method" autoplay muted loop playsinline height="100%" src="assets/figures/overview_new.png" style="width:100%;height:100%;">
-          <p>
+          <div class="content has-text-justified">
+            <p>
         Overview of PoseAnimate. The pipeline is on the left, we first utilize the Pose Alignment Transition Algorithm(PATA) to align the desired pose with a smooth transition to the target pose. 
         We utilize the inversion noise of the source image as the starting point for generation. 
         The optimized pose-aware embedding of PACM, in Sec.3.2, serves as the unconditional embedding for input. The right side is the illustration of DCAM in Sec.3.3. 
         The attention block in this module consists of Dual Consistency Attention(DCA), Cross Attention (CA), and Feed-Forward Networks (FFN). 
         Within DCA, we integrate MGDM to independently perform inter-frame attention fusion for the character and background, which further enhance the fidelity of fine-grained details. 
-          </p> 
+            </p> 
+          </div>
         </div>
     </div>
     </div>
