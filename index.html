@@ -137,6 +137,11 @@
                     <td><video src="assets/animate/bat/00011.mp4" style="width: 256px; height: 256px;" autoplay muted loop></video></td>
                 </tr>
                 <tr>
+                    <td><image src="assets/animate/joker/0.jpg" style="width: 256px; height: 256px;"></image></td>
+                    <td><video src="assets/animate/joker/pose.mp4" style="width: 256px; height: 256px;" autoplay muted loop></video></td>
+                    <td><video src="assets/animate/joker/00038.mp4" style="width: 256px; height: 256px;" autoplay muted loop></video></td>
+                </tr>
+                <tr>
                     <td><image src="assets/animate/ast/0.jpg" style="width: 256px; height: 256px;"></image></td>
                     <td><video src="assets/animate/ast/pose.mp4" style="width: 256px; height: 256px;" autoplay muted loop></video></td>
                     <td><video src="assets/animate/ast/00010.mp4" style="width: 256px; height: 256px;" autoplay muted loop></video></td>
@@ -150,6 +155,11 @@
                     <td><image src="assets/animate/cowboy/0.jpg" style="width: 256px; height: 256px;"></image></td>
                     <td><video src="assets/animate/cowboy/pose.mp4" style="width: 256px; height: 256px;" autoplay muted loop></video></td>
                     <td><video src="assets/animate/cowboy/00004.mp4" style="width: 256px; height: 256px;" autoplay muted loop></video></td>
+                </tr>
+                <tr>
+                    <td><image src="assets/animate/space3/0.jpg" style="width: 256px; height: 256px;"></image></td>
+                    <td><video src="assets/animate/space3/pose.mp4" style="width: 256px; height: 256px;" autoplay muted loop></video></td>
+                    <td><video src="assets/animate/space3/00037.mp4" style="width: 256px; height: 256px;" autoplay muted loop></video></td>
                 </tr>
                 <tr>
                     <td><image src="assets/animate/dance1/0.jpg" style="width: 256px; height: 256px;"></image></td>
@@ -214,7 +224,7 @@
         Overview of PoseAnimate. The pipeline is on the left, we first utilize the Pose Alignment Transition Algorithm(PATA) to align the desired pose with a smooth transition to the target pose. 
         We utilize the inversion noise of the source image as the starting point for generation. 
         The optimized pose-aware embedding of PACM, in Sec.3.2, serves as the unconditional embedding for input. The right side is the illustration of DCAM in Sec.3.3. 
-        The attention block in this module consists of Dual Consistency Attention(DCA), Cross Attention (CA), and Feed-Forward Networks (FFN). 
+        The attention block in this module consists of Dual Consistency Attention (DCA), Cross Attention (CA), and Feed-Forward Networks (FFN). 
         Within DCA, we integrate MGDM to independently perform inter-frame attention fusion for the character and background, which further enhance the fidelity of fine-grained details. 
             </p> 
           </div>
